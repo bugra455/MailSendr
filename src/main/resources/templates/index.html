@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Mail Sender</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    
+</head>
+<body>
+
+<form action="#" th:action="@{/api/mail/send}" th:object="${mailForm}" method="post">
+
+    <h2>Send Multiple Mails</h2>
+    <div class="form-group">
+        <label for="subject">Topic:</label>
+        <input type="text" id="subject" th:field="*{subject}" placeholder="Enter Topic">
+    </div>
+    <div class="form-group">
+        <label for="to">Mail Address:</label>
+        <input type="email" id="to" th:field="*{to}" placeholder="Enter Mail Adresses">
+    </div>
+    <div class="form-group">
+        <label>Message:</label>
+        <div class="message">
+            <label>
+                <textarea th:field="*{message}" placeholder="Write Your Message"></textarea>
+            </label>
+            <button name="sendbutton" type="submit" title="send">Send</button>
+        </div>
+    </div>
+
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+</form>
+</body>
+</html>
